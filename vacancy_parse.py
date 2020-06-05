@@ -1,13 +1,18 @@
 from bs4 import BeautifulSoup
 import requests
+#import hh_parse
 
-url = 'https://samara.hh.ru/vacancy/37080613?query=devops'
+#url = 'https://samara.hh.ru/vacancy/37080613?query=devops''
 headers = {
                         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                         'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36',
                         'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*',
                         'Connection': 'keep-alive'
 }
+
+
+
+
 
 def get_http_code(url):
     requ = requests.get(url, headers=headers)
@@ -27,4 +32,4 @@ def get_vacancy(url, headers):
         print('you fucked up!')
 
 
-print(get_vacancy(url, headers))
+#print(get_vacancy(url, headers))
