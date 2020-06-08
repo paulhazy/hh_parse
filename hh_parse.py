@@ -12,7 +12,6 @@ def get_code(url):
     stat = requests.get(url, headers=headers)
     return stat
 
-
 def get_hrefs(url, headers):
     html = get_code(url)
     if html.status_code == 200:
@@ -28,5 +27,22 @@ def get_hrefs(url, headers):
         return links
     else:
         print('fucked up!')
-get_hrefs(url, headers)
+print(get_hrefs(url, headers))
 # используй print для дебага
+
+#def get_http_code(url):
+#    requ = requests.get(url, headers=headers)
+#    return requ
+
+def get_vacancy(url, headers):
+    get_html = get_code(url)
+    if get_html.status_code == 200:
+        ses = requests.get(url, headers=headers)
+        soup = BeautifulSoup(ses.content, "html.parser")
+        vacancy = soup.find_all("div", class_='g-user-content')
+#       result = []
+        for i in vacancy:
+#           result.append()
+            return i.get_text('\n', strip=True)
+    else:
+        print('you fucked up!')
