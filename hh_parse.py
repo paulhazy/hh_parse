@@ -2,11 +2,12 @@ from bs4 import BeautifulSoup
 import requests
 from urllib.parse import urlparse
 
-url = 'https://samara.hh.ru/search/vacancy?area=78&st=searchVacancy&text=devops'
+url = 'https://samara.hh.ru/search/vacancy?area=78&st=searchVacancy&text=devops&fromSearch=true'
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                          'AppleWebKit/537.36 (KHTML, like Gecko) '
                          'Chrome/79.0.3945.117 Safari/537.36', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*',
                           'Connection': 'keep-alive'}
+
 
 def get_code(url):
     stat = requests.get(url, headers=headers)
@@ -26,13 +27,10 @@ def get_hrefs(url, headers):
             links.append(link)
         return links
     else:
-        print('fucked up!')
-print(get_hrefs(url, headers))
-# используй print для дебага
-
-#def get_http_code(url):
-#    requ = requests.get(url, headers=headers)
-#    return requ
+        return 'fucked up!'
+#print(get_hrefs(url, headers))
+# use print for debug
+links=get_hrefs(url, headers)
 
 def get_vacancy(url, headers):
     get_html = get_code(url)
@@ -40,9 +38,13 @@ def get_vacancy(url, headers):
         ses = requests.get(url, headers=headers)
         soup = BeautifulSoup(ses.content, "html.parser")
         vacancy = soup.find_all("div", class_='g-user-content')
-#       result = []
+        #result = []
         for i in vacancy:
-#           result.append()
+            #result.append()
             return i.get_text('\n', strip=True)
     else:
-        print('you fucked up!')
+        return 'you fucked up!'
+
+#цикл по каждой ссылке в списке
+for urls in links:
+    print(get_vacancy(urls, headers))
