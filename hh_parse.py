@@ -32,15 +32,13 @@ def get_hrefs(url, headers):
 # use print for debug
 links=get_hrefs(url, headers)
 
-def get_vacancy(url, headers):
-    get_html = get_code(url)
+def get_vacancy(urls, headers):
+    get_html = get_code(urls)
     if get_html.status_code == 200:
-        ses = requests.get(url, headers=headers)
+        ses = requests.get(urls, headers=headers)
         soup = BeautifulSoup(ses.content, "html.parser")
         vacancy = soup.find_all("div", class_='g-user-content')
-        #result = []
         for i in vacancy:
-            #result.append()
             return i.get_text('\n', strip=True)
     else:
         return 'you fucked up!'
