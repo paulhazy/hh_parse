@@ -1,12 +1,25 @@
 import telebot
+import hh_parse
+import config
+import requests
 
-token = '1207237270:AAGVTkfKAbjjBGP_D8N7-LZ6EIUSPZVca48'
+hrefs = hh_parse.links
 
-bot = telebot.TeleBot(token)
+def send_to_tg(str):
+    token = config.bot_token
+    url = "https://api.telegram.org/bot" + token
+    channel_id = '380012573'
+    method = url + "/sendMessage"
 
-@bot.message_handler(content_types=["text"])
-def repeat(msg):
-    bot.send_message(msg.chat.id, msg.text)
+    req = requests.post(method, data={
+        "chat_id": channel_id,
+        "text": str
+    })
 
-if __name__ == '__main__':
-    bot.infinity_polling()
+
+
+#if __name__ == '__main__':
+#    send_to_tg(hrefs)
+
+for i in hrefs:
+    send_to_tg(i)

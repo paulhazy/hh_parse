@@ -44,5 +44,5 @@ def get_vacancy(urls, headers):
         return 'you fucked up!'
 
 #цикл по каждой ссылке в списке
-for urls in links:
-    print(get_vacancy(urls, headers))
+#for urls in links:
+#    print(get_vacancy(urls, headers))
