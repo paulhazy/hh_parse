@@ -17,8 +17,7 @@ def get_hrefs(url, headers):
     html = get_code(url)
     if html.status_code == 200:
         print('good code, keep going\n')
-        ses = requests.Session()
-        req = ses.get(url, headers=headers)
+        req = requests.get(url, headers=headers)
         soup = BeautifulSoup(req.content, "html.parser")
         get_div = soup.find_all("a", class_="bloko-link HH-LinkModifier")
         links = []
@@ -28,21 +27,29 @@ def get_hrefs(url, headers):
         return links
     else:
         return 'fucked up!'
-#print(get_hrefs(url, headers))
-# use print for debug
+
 links=get_hrefs(url, headers)
 
 def get_vacancy(urls, headers):
     get_html = get_code(urls)
     if get_html.status_code == 200:
-        ses = requests.get(urls, headers=headers)
+        ses = get_code(urls)
         soup = BeautifulSoup(ses.content, "html.parser")
         vacancy = soup.find_all("div", class_='g-user-content')
+        def get_title(urls, headers):
+            title = soup.find("div", class_="vacancy-title")
+            for t in title:
+                return t.get_text("\n", strip=True)
+            return get_title(urls, headers)
+
         for i in vacancy:
-            return i.get_text('\n', strip=True)
+            return get_title(urls, headers)+ "\n" + i.get_text('\n', strip=True)
     else:
         return 'you fucked up!'
 
-#цикл по каждой ссылке в списке
-#for urls in links:
-#    print(get_vacancy(urls, headers))
+#print(get_vacancy(links[0], headers))
+#for test in links:
+#print(links)
+
+#test
+print(get_vacancy(links[0], headers))

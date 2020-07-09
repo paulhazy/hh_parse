@@ -3,6 +3,7 @@ import config
 import requests
 
 hrefs = hh_parse.links
+vacancy = hh_parse.get_vacancy
 
 def send_to_tg(str):
     token = config.bot_token
@@ -16,9 +17,5 @@ def send_to_tg(str):
     })
 
 
-
-#if __name__ == '__main__':
-#    send_to_tg(hrefs)
-
 for i in hrefs:
-    send_to_tg(i)
+    send_to_tg(vacancy(i, hh_parse.headers))
