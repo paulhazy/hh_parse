@@ -17,5 +17,5 @@ def send_to_tg(str):
     })
 
 
-for i in hrefs:
-    send_to_tg(vacancy(i, hh_parse.headers))
+for href in hrefs:
+    send_to_tg(vacancy(href, hh_parse.headers))

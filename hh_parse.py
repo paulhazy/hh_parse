@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
-from urllib.parse import urlparse
+import re
 
 url = 'https://samara.hh.ru/search/vacancy?area=78&st=searchVacancy&text=devops&fromSearch=true'
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
@@ -43,13 +43,20 @@ def get_vacancy(urls, headers):
             return get_title(urls, headers)
 
         for i in vacancy:
-            return get_title(urls, headers)+ "\n" + i.get_text('\n', strip=True)
+            if 'devops'.lower() in get_title(urls, headers).lower():
+                return '\n' + get_title(urls, headers) + "\n" + i.get_text('\n', strip=True)
+
     else:
         return 'you fucked up!'
 
+
 #print(get_vacancy(links[0], headers))
 #for test in links:
-#print(links)
+#   print(links)
 
 #test
-print(get_vacancy(links[0], headers))
+#print(get_vacancy(links[0], headers))
+
+
+#for link in links:
+ #   print(get_vacancy(link, headers))
