@@ -50,10 +50,6 @@ def get_vacancy(urls, headers):
         return 'you fucked up!'
 
 
-#print(get_vacancy(links[0], headers))
-#for test in links:
-#   print(links)
-
 #test
 #print(get_vacancy(links[0], headers))
 
