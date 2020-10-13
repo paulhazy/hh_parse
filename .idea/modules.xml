@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://C:/_raccoon_project/.idea/_raccoon_project.iml" filepath="C:/_raccoon_project/.idea/_raccoon_project.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/hh_parse.iml" filepath="$PROJECT_DIR$/.idea/hh_parse.iml" />
       <module fileurl="file://C:/learn_py/.idea/learn_py.iml" filepath="C:/learn_py/.idea/learn_py.iml" />
     </modules>
