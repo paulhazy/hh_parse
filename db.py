@@ -12,7 +12,7 @@ conn = psycopg2.connect(
 print('Connection successfully!')
 cur = conn.cursor()
 cur.execute(
-    "INSET INTO STUDENT (ADMISSION,NAME,AGE,COURSE,DEPARTMENT) VALUES (3420, 'John', 18, 'Computer Science', 'ICT')"
+    "INSERT INTO STUDENT (ADMISSION,NAME,AGE,COURSE,DEPARTMENT) VALUES (3420, 'John', 18, 'Computer Science', 'ICT')"
 )
 conn.commit()
 print("insert success")
