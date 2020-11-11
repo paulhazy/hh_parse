@@ -16,6 +16,6 @@ def send_to_tg(str):
         "text": str
     })
 
-
-for href in hrefs:
-    send_to_tg(vacancy(href, hh_parse.headers))
+if __name__ == '__main__':
+    for href in hrefs:
+        send_to_tg(vacancy(href, hh_parse.headers))
